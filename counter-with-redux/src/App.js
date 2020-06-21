@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Counter from './Counter';
-import { connect } from 'react-redux';
-import * as actionTypes from "./store/actions";
+import { useDispatch, useSelector } from 'react-redux';
+import * as actionTypes from './store/actions';
+
 const App = () => {
-  const [count, setCounter] = useState(0);
+  const count = useSelector(state => state.count);
+  const dispatch = useDispatch();
   const incrementCount = () => {
-    return setCounter(count + 1);
+    dispatch({type: actionTypes.INCREMENT});
   }
   const decrementCount = () => {
-    return setCounter(count > 0 ? count - 1 : 0);
+    dispatch({type: actionTypes.DECREMENT});
   }
   const reset = () => {
-    return setCounter(0);
+    dispatch({type: actionTypes.RESET});
   }
   return (
     <div className="App">
@@ -29,21 +31,5 @@ const App = () => {
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    count: state.count,
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    incrementCount: () => dispatch({ type: actionTypes.INCREMENT }),
-    decrementCount: () => dispatch({ type: actionTypes.DECREMENT }),
-    reset: () => dispatch({ type: actionTypes.RESET })
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;
