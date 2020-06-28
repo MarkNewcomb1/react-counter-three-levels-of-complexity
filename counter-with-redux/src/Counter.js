@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Counter = (props) => {
+const Counter = React.memo((props) => {
     return (
         <div>
         <p><button onClick={() => props.incrementCount()}>Increment</button></p>
@@ -10,6 +10,6 @@ const Counter = (props) => {
         <p>Count: {props.count}</p>
         </div>
     );
-}
+})
 
 export default Counter;
