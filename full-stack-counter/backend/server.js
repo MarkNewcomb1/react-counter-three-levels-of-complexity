@@ -2,7 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
 import connectDB from './config/db.js'
-import counterData from './data/counterData.js'
+
+import counterRoutes from './routes/counterRoutes.js'
 
 dotenv.config();
 
@@ -10,13 +11,10 @@ connectDB()
 const app = express()
 
 app.get('/', (req, res) => {
-    res.send('API is running....')
+    res.send('API is running...')
 })
 
-app.get('/api/counter', (req, res) => {
-    res.json(counterData)
-})
-
+app.use('/api/counter', counterRoutes)
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.blue.bold))
