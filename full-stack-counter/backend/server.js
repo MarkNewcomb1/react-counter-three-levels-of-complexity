@@ -1,6 +1,6 @@
-const express = require('express')
-const dotenv = require('dotenv')
-const counterData = require('./data/counterData')
+import express from 'express'
+import dotenv from 'dotenv'
+import counterData from './data/counterData.js'
 
 dotenv.config();
 const app = express()

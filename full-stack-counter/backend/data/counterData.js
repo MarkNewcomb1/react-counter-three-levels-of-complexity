@@ -5,4 +5,4 @@ const counterData = [
     }
 ]
 
-module.exports = counterData
+export default counterData
