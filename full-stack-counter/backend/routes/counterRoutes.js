@@ -6,7 +6,7 @@ import Counter from '../models/CounterModel.js'
 // getting the counter
 router.get('/', asyncHandler(async (req, res) => {
     const counterResults = await Counter.find({})
-    res.json(counterResults)
+    res.json(counterResults[0].counter)
 }))
 
 // router.put('/', (req, res) => {

@@ -1,12 +1,18 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import './App.css';
 import Counter from './Counter';
 import { useDispatch, useSelector } from 'react-redux';
-import * as actionTypes from './store/actions';
+import * as actionTypes from './constants/actions';
+import { counterActions } from './actions/counterActions'
 
 const App = () => {
-  const count = useSelector(state => state.count);
   const dispatch = useDispatch();
+  const counterList = useSelector(state => state.counterList)
+  const { loading, error, count } = counterList
+  useEffect(() => {
+    dispatch(counterActions())
+  }, [dispatch])
+
   const incrementCount = useCallback(() =>
     dispatch({ type: actionTypes.INCREMENT }),
     [dispatch]
@@ -24,12 +30,18 @@ const App = () => {
       <header className="App-header">
         Counter With Redux
       </header>
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : error ? (
+      <h3>{error}</h3>
+      ) :
       <Counter
         count={count}
         incrementCount={incrementCount}
         decrementCount={decrementCount}
         reset={reset}
       />
+    }
     </div>
   );
 }
