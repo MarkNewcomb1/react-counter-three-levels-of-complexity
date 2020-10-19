@@ -3,7 +3,7 @@ import './App.css';
 import Counter from './Counter';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actionTypes from './constants/actions';
-import { counterActions, incrementAction } from './actions/counterActions'
+import { counterActions, incrementAction, decrementAction } from './actions/counterActions'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const App = () => {
     [dispatch]
   )
   const decrementCount = useCallback(() =>
-    dispatch({ type: actionTypes.DECREMENT }),
+    dispatch(decrementAction()),
     [dispatch]
   )
   const reset = useCallback(() =>

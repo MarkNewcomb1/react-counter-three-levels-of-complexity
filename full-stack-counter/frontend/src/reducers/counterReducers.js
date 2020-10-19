@@ -21,11 +21,13 @@ export const counterReducer = (state = { loading: true, count: 0 }, action) => {
             };
         case actionTypes.DECREMENT:
             return {
-                count: state.count > 0 ? state.count - 1 : state.count,
+                loading: false,
+                count: action.payload,
             };
         case actionTypes.RESET:
             return {
-                count: 0,
+                loading: false,
+                count: action.payload,
             };
         default:
             return state;

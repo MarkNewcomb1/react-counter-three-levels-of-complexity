@@ -28,3 +28,20 @@ export const incrementAction = () => async (dispatch) => {
         })
     }
 }
+
+export const decrementAction = () => async (dispatch) => {
+    // if (count <= 0) {
+    //     return 'count cannot be decremented further.';
+    // }
+    try {
+        dispatch({ type: actionTypes.COUNTER_REQUEST })
+        const { data } = await axios.put('/api/counter/decrement')
+        dispatch({ type: actionTypes.COUNTER_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({
+            type: actionTypes.COUNTER_FAIL, payload: error.response &&
+                error.response.data.message ? error.response.data.message
+                : error.message
+        })
+    }
+}

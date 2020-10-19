@@ -26,4 +26,12 @@ router.put('/increment', asyncHandler(async (req, res) => {
     res.json(counterResults[0].counter)
 }))
 
+router.put('/decrement', asyncHandler(async (req, res) => {
+    const conditions = { '_id': '5f7cc277431d551d6e4fdb64' },
+    update = { $inc: {counter: -1} };
+    const updateAction = await Counter.update(conditions, update);
+    const counterResults = await Counter.find({})
+    res.json(counterResults[0].counter)
+}))
+
 export default router
