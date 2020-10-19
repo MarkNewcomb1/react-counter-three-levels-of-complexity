@@ -7,8 +7,24 @@ export const counterActions = () => async (dispatch) => {
         const { data } = await axios.get('/api/counter')
         dispatch({ type: actionTypes.COUNTER_SUCCESS, payload: data })
     } catch (error) {
-        dispatch({ type: actionTypes.COUNTER_FAIL, payload: error.response && 
-            error.response.data.message ? error.response.data.message 
-            : error.message})
+        dispatch({
+            type: actionTypes.COUNTER_FAIL, payload: error.response &&
+                error.response.data.message ? error.response.data.message
+                : error.message
+        })
+    }
+}
+
+export const incrementAction = () => async (dispatch) => {
+    try {
+        dispatch({ type: actionTypes.COUNTER_REQUEST })
+        const { data } = await axios.put('/api/counter/increment')
+        dispatch({ type: actionTypes.COUNTER_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({
+            type: actionTypes.COUNTER_FAIL, payload: error.response &&
+                error.response.data.message ? error.response.data.message
+                : error.message
+        })
     }
 }

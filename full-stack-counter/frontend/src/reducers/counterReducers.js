@@ -1,4 +1,5 @@
 import * as actionTypes from "../constants/actions";
+import axios from 'axios';
 
 export const counterReducer = (state = { loading: true, count: 0 }, action) => {
     switch (action.type) {
@@ -16,7 +17,7 @@ export const counterReducer = (state = { loading: true, count: 0 }, action) => {
             }
         case actionTypes.INCREMENT:
             return {
-                count: state.count + 1,
+                loading: false, count: action.payload
             };
         case actionTypes.DECREMENT:
             return {
