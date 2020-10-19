@@ -3,7 +3,12 @@ import './App.css';
 import Counter from './Counter';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actionTypes from './constants/actions';
-import { counterActions, incrementAction, decrementAction } from './actions/counterActions'
+import {
+  counterActions,
+  incrementAction,
+  decrementAction,
+  resetAction
+} from './actions/counterActions'
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,7 +27,7 @@ const App = () => {
     [dispatch]
   )
   const reset = useCallback(() =>
-    dispatch({ type: actionTypes.RESET }),
+    dispatch(resetAction()),
     [dispatch]
   )
   return (
@@ -33,15 +38,15 @@ const App = () => {
       {loading ? (
         <h3>Loading...</h3>
       ) : error ? (
-      <h3>{error}</h3>
+        <h3>{error}</h3>
       ) :
-      <Counter
-        count={count}
-        incrementCount={incrementCount}
-        decrementCount={decrementCount}
-        reset={reset}
-      />
-    }
+          <Counter
+            count={count}
+            incrementCount={incrementCount}
+            decrementCount={decrementCount}
+            reset={reset}
+          />
+      }
     </div>
   );
 }

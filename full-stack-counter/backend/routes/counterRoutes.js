@@ -34,4 +34,12 @@ router.put('/decrement', asyncHandler(async (req, res) => {
     res.json(counterResults[0].counter)
 }))
 
+router.put('/reset', asyncHandler(async (req, res) => {
+    const conditions = { '_id': '5f7cc277431d551d6e4fdb64' },
+    update = { $set: {counter: 0} };
+    const updateAction = await Counter.update(conditions, update);
+    const counterResults = await Counter.find({})
+    res.json(counterResults[0].counter)
+}))
+
 export default router
