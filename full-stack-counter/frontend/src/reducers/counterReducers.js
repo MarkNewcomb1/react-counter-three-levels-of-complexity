@@ -14,18 +14,18 @@ export const counterReducer = (state = { loading: true, count: 0 }, action) => {
             return {
                 loading: false, error: action.payload
             }
-        // case actionTypes.INCREMENT:
-        //     return {
-        //         count: state.count + 1,
-        //     };
-        // case actionTypes.DECREMENT:
-        //     return {
-        //         count: state.count > 0 ? state.count - 1 : state.count,
-        //     };
-        // case actionTypes.RESET:
-        //     return {
-        //         count: 0,
-        //     };
+        case actionTypes.INCREMENT:
+            return {
+                count: state.count + 1,
+            };
+        case actionTypes.DECREMENT:
+            return {
+                count: state.count > 0 ? state.count - 1 : state.count,
+            };
+        case actionTypes.RESET:
+            return {
+                count: 0,
+            };
         default:
             return state;
     }
